@@ -23,6 +23,13 @@
     animation:beat 1s infinite;
     margin:0 auto 2rem;
   }
+  a{
+    text-decoration: none;
+  }
+  .text h4{
+    position:relative;
+    color:#ff2e63;
+  }
   .heart::before,
   .heart::after{
     content:"";
