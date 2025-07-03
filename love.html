@@ -4,60 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sorry, My Love ❤️</title>
-
-<style>
-  /* ---- 1. Base layout ---- */
-  *{box-sizing:border-box;margin:0}
-  body{
-    min-height:100vh;              /* full‑screen */
-    display:flex;justify-content:center;align-items:center; /* perfect centering */
-    font-family:system-ui,sans-serif;
-    background:linear-gradient(-45deg,#ff9e9e,#ffdede,#fff6f6,#ffbcbc);
-    background-size:400% 400%;
-    animation:bgShift 12s ease-in-out infinite alternate; /* soft gradient */
-  }
-
-  @keyframes bgShift{ 100%{background-position:100% 50%} }
-
-  /* ---- 2. Wrapper for heart + message ---- */
-  .wrapper{text-align:center;position:relative}
-
-  /* ---- 3. CSS heart (two pseudo circles + square) ---- */
-  .heart{
-    position:relative;
-    width:100px;height:90px;
-    background:#ff2e63;
-    transform:rotate(-45deg);           /* square -> diamond */
-    animation:beat 1s infinite;
-    margin:0 auto 2rem;
-  }
-  .heart::before,
-  .heart::after{
-    content:"";
-    position:absolute;
-    width:100px;height:90px;
-    background:#ff2e63;
-    border-radius:50%;
-  }
-  .heart::before{top:-50px;left:0}
-  .heart::after{left:50px;top:0}
-
-  @keyframes beat{
-    0%,40%,80%,100%{transform:rotate(-45deg) scale(1)}
-    20%,60%        {transform:rotate(-45deg) scale(1.25)}
-  }
-
-  /* ---- 4. Typing line + blinking cursor ---- */
-  h1{font-size:clamp(1.5rem,5vw,2.5rem);font-weight:600;color:#d10000}
-  .cursor{
-    display:inline-block;
-    width:0.15em;height:1em;background:#d10000;margin-left:2px;
-    animation:blink 0.8s steps(1) infinite;
-    vertical-align:bottom;
-  }
-  @keyframes blink{50%{opacity:0}}
-
-</style>
+  <link href="stylelove.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
