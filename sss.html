@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>I'm Sorry</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Reset */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+        body{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            min-height:100vh;
+            font-family:'Segoe UI',sans-serif;
+            background:#ffeef0;
+            overflow-x:hidden;
+        }
+        h1{font-size:2.5rem;margin-bottom:1rem;text-align:center}
+        p{margin-bottom:1.5rem;text-align:center;font-size:1.1rem;line-height:1.5}
+
+        /* Heart */
+        .heart{
+            width:120px;height:120px;position:relative;margin-bottom:2rem;
+            transform:rotate(-45deg);
+            animation:beat 1.3s infinite;
+        }
+        .heart::before, .heart::after{
+            content:"";
+            position:absolute;
+            width:120px;
+            height:120px;
+            background:#e63946;
+            border-radius:50%;
+        }
+        .heart::before{top:-60px;left:0;}
+        .heart::after{left:60px;top:0;}
+        @keyframes beat{
+            0%,20%{transform:rotate(-45deg) scale(1);}
+            25%{transform:rotate(-45deg) scale(1.15);}
+            40%{transform:rotate(-45deg) scale(1);}
+            50%{transform:rotate(-45deg) scale(1.15);}
+            60%,100%{transform:rotate(-45deg) scale(1);}
+        }
+
+        /* Card */
+        .card{
+            background:#fff;
+            padding:2rem 2.5rem;
+            border-radius:16px;
+            box-shadow:0 6px 14px rgba(0,0,0,.15);
+            max-width:420px;
+            width:90%;
+            text-align:center;
+        }
+        textarea{
+            width:100%;
+            height:100px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            padding:.75rem;
+            font-size:1rem;
+            margin:1rem 0;
+            resize:vertical;
+        }
+        .buttons{
+            display:flex;
+            justify-content:space-between;
+            gap:.5rem;
+            margin-top:1rem;
+        }
+        button{
+            flex:1;
+            padding:.75rem 0;
+            font-size:1rem;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            transition:transform .2s, background-color .2s;
+        }
+        button:active{transform:scale(.97);}
+        .accept{background:#2ecc71;color:#fff;}
+        .accept:hover{background:#27ae60;}
+        .reject{background:#e74c3c;color:#fff;}
+        .reject:hover{background:#c0392b;}
+        .callMe{
+            margin-top:1rem;
+            display:inline-block;
+            color:#1a73e8;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+    <main class="card">
+        <h1>I’m truly sorry</h1>
+        <p>I know I hurt you, and that was never my intention. Your happiness means the world to me. Please let me know how you feel—your words matter.</p>
+        <form id="responseForm">
+            <label for="reply">Your message (optional)</label>
+            <textarea id="reply" name="reply" placeholder="Type here…"></textarea>
+            <div class="buttons">
+                <button type="submit" class="accept">I Forgive You 💖</button>
+                <button type="button" class="reject">Still Hurts 😢</button>
+            </div>
+        </form>
+        <a href="tel:+91XXXXXXXXXX" class="callMe">Prefer to talk? Call me</a>
+    </main>
+
+    <script>
+        const form = document.getElementById('responseForm');
+        const rejectBtn = document.querySelector('.reject');
+
+        function saveResponse(choice, text){
+            const data = {choice, text, date:new Date().toISOString()};
+            localStorage.setItem('apologyResponse', JSON.stringify(data));
+        }
+
+        form.addEventListener('submit', e=>{
+            e.preventDefault();
+            const text = document.getElementById('reply').value.trim();
+            saveResponse('accepted', text);
+            form.innerHTML = '<h2>Thank you for forgiving me ❤️</h2><p>I promise I will do better.</p>';
+        });
+
+        rejectBtn.addEventListener('click', ()=>{
+            const text = document.getElementById('reply').value.trim();
+            saveResponse('rejected', text);
+            form.innerHTML = '<h2>I understand</h2><p>I will give you the space and time you need.</p>';
+        });
+    </script>
+</body>
+</html>
